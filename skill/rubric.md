@@ -32,11 +32,14 @@ will fail eval issues designed around that family.
 
 ## Checks
 
-| Check | Evidence | Pass condition | Weight |
-|---|---|---|---|
-|  |  |  |  |
+|      Check        |   Evidence       |                                  Pass condition                                |   Weight   |
+1. |maintainer-alive|   comment thread | Most recent comment was replied to, and the comment was within the ;ast 90 days|  Preferred |      
+2. |active-repo  | commit history | last 3 commits were within the last 2 months  | Required |
+3. |right-fit| tags|has the tag "good first issue" in the about section | preferred |
+4. | unclaimed|comment thread| comments do not contain the phrase "claim this issue" or ""work on this issue from a non maintainer| required    
 
 ## Verdict rule
+If any required checks do not pass, it should be rejected. 
 
 <!-- State how the grades above combine into accept or reject, and how
 unclear is treated. Example shape (write your own): "accept if every
