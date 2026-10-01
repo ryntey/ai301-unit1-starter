@@ -39,7 +39,7 @@ will fail eval issues designed around that family.
 4. | unclaimed|comment thread| comments do not contain the phrase "claim this issue" or ""work on this issue from a non maintainer| required    
 
 ## Verdict rule
-If any required checks do not pass, it should be rejected. 
+If any required checks do not pass, it should be rejected. If there is a ? on a required check, it counts as a fail, and preferred checks should never change the verdict.
 
 <!-- State how the grades above combine into accept or reject, and how
 unclear is treated. Example shape (write your own): "accept if every
