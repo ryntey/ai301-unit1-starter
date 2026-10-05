@@ -3,9 +3,8 @@
 and a chosen rubric, then score agreement against the gold labels.
 
 One command:
-
-    python3 run_eval.py --rubric path/to/your-rubric.md
-
+python3 run_eval.py --rubric /Users/laurynallotey/Documents/GitHub/ai301-unit1-starter/skill
+    
 Requires the `claude` CLI (Claude Code). Each bundle is graded by one
 non-interactive `claude -p` call carrying the skill, the rubric, and the
 bundle text; the model's last fenced JSON block is the verdict.

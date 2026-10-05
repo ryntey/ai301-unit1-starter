@@ -29,17 +29,22 @@ families: the maintainer is alive, the repo is in use, the scope fits a
 newcomer, and nobody else is already on it. A rubric that ignores a family
 will fail eval issues designed around that family.
 -->
-
 ## Checks
 
-|      Check        |   Evidence       |                                  Pass condition                                |   Weight   |
-1. |maintainer-alive|   comment thread | Most recent comment was replied to, and the comment was within the ;ast 90 days|  Preferred |      
-2. |active-repo  | commit history | last 3 commits were within the last 2 months  | Required |
-3. |right-fit| tags|has the tag "good first issue" in the about section | preferred |
-4. | unclaimed|comment thread| comments do not contain the phrase "claim this issue" or ""work on this issue from a non maintainer| required    
+All dates are measured against the bundle's capture date (eval mode) or today (live mode).
+
+| Check | Evidence | Pass condition | Weight |
+|---|---|---|---|
+| active-repo | "archived:" on the repo line and the last 5 default-branch commit dates (Repo facts) | The repo is not archived AND the newest of the last 5 default-branch commits is within 12 months of the capture date | required |
+| unclaimed | "this issue: assignees" and "linked PRs" (Repo facts), plus every PR mentioned in the comment thread | No assignee; no linked or mentioned PR is open; and no non-maintainer has posted a claim ("I'll take this", "working on this", "can I work on this") within 6 months of the capture date. Older claims with no open PR are stale and do not count | required |
+| bounded-scope | Issue title and body, labels, opener's author_association, the comment thread, and closed-unmerged linked PRs | Fails if ANY of: (a) the issue is an umbrella / tracking / meta issue listing sub-tasks to split into separate PRs; (b) the thread shows the design is still being debated and no maintainer (OWNER/MEMBER/COLLABORATOR) has settled it; (c) 2 or more linked PRs are closed without merging; (d) it is a feature request that was not opened by a maintainer, carries no labels, and no maintainer has commented approving it; (e) it is a usage/support question. Otherwise pass. A short body or missing repro steps is NOT a fail | required |
+| ai-policy | "contribution policy" line (Repo facts) | Fails only if the policy bans AI-generated code or documentation outright. Conditions (disclose, review, understand, test AI output) pass. No stated policy passes | required |
+| maintainer-alive | "maintainer first-response sample" (Repo facts) and author_association of commenters in the thread | A maintainer (OWNER/MEMBER/COLLABORATOR) replied to an issue within 30 days in the sample, or commented in this thread within 150 days of the capture date | preferred |
+| gfi-label | Issue labels | Has a "good first issue", "help wanted", or "easy" label | preferred |
 
 ## Verdict rule
-If any required checks do not pass, it should be rejected. If there is a ? on a required check, it counts as a fail, and preferred checks should never change the verdict.
+
+Accept if every required check passes. Reject if any required check fails. An `unclear` grade on a required check counts as fail. Preferred checks never change the verdict; they only rank issues that are already accepted.
 
 <!-- State how the grades above combine into accept or reject, and how
 unclear is treated. Example shape (write your own): "accept if every
